@@ -1,0 +1,11 @@
+---
+- name: Playbook for creating users
+  hosts: 192.168.132.137
+
+  tasks:
+        - name: Create users
+          user:
+                name: george
+                home: /home/george
+                shell: /bin/bash
+

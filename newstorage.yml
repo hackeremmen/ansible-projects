@@ -1,0 +1,32 @@
+---
+- name: Create and mount storage
+  hosts: 192.168.132.137
+
+  tasks:
+        - name: Create new partition
+          parted:
+                  name: files
+                  label: gpt
+                  device: /dev/sda
+                  number: 1
+                  state: present
+                  part_start: 1MiB
+                  part_end: 1GiB
+
+        - name: Create xfs filesystem
+          filesystem:
+                        dev: /dev/sda1
+                        fstype: xfs
+
+        - name: Create mount directory
+          file:
+                path: /data
+                state: directory
+
+        - name: Mount the filesystem
+          mount:
+                src: /dev/sda1
+                fstype: xfs
+                state: mounted
+                path: /data
+

@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  user: tasadov
+  sudo: True
+  tasks:
+
+
+  - name: "disable ipv6"
+    shell: echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+
+  - name: "disable ipv6"
+    shell: echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
+
+  - name: "restart network"
+    service: name=network state=restarted
+
+  - name: "add public resolver"
+    lineinfile: dest=/etc/resolv.conf regexp='^nameserver' 
+              line='nameserver 8.8.8.8' state=present
+
+  - name: "clean yum"
+    shell: yum clean all
+
+  - name: "warmup Yum"
+    shell: yum search libselinux-python
+
+  - name: "use Yum"
+    yum: name={{ item }} state=installed
+    with_items: 
+      - libselinux-python
+
+  - name: "Enable SELinux"
+    selinux: policy=targeted state=permissive

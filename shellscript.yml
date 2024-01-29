@@ -1,0 +1,8 @@
+---
+- name: Playbook for shell script
+  hosts: 192.168.132.137
+        
+  tasks:
+           - name: Run shell script
+             shell: "/home/ansible/cfile.sh"
+

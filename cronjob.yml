@@ -1,0 +1,16 @@
+---
+- name: Create a cron job
+  hosts: 192.168.132.137
+
+  tasks:
+        - name: Schedule cron
+          cron:
+                name: This job is scheduled by Ansible
+                minute: "0"
+                hour: "10"
+                day: "*"
+                month: "*"
+                weekday: "4"
+                user: root
+                job: "/home/ansible/cfile.sh"
+

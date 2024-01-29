@@ -1,0 +1,9 @@
+---
+- name: Change File Permissions
+  hosts: all
+
+  tasks:
+        - name: Files Permissions
+          file:
+                  path: /home/totu/linux2
+                  mode: a+w

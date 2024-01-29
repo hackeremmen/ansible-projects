@@ -1,0 +1,19 @@
+---
+- name: Download Tomcat from tomcat.apache.org
+  hosts: localhost
+  
+  tasks:
+            - name: Create a Directory /opt/tomcat
+              file:
+                        path: /opt/tomcat
+                        state: directory
+                        mode: 0755
+                        owner: root
+                        group: root
+            - name: Download Tomcat from url
+              get_url:
+                        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.85/bin/apache-tomcat-8.5.85-deployer.tar.gz
+                        dest: /opt/tomcat
+                        mode: 0755
+                        group: tasadov
+                        owner: tasadov

@@ -1,0 +1,13 @@
+---
+- name: Copying File from local host to remote clients
+  hosts: all
+ 
+  tasks:
+        - name: Copying file
+          become: true
+          copy:
+                src: /home/tasadov/some.cfg
+                dest: /tmp
+                owner: tasadov
+                group: tasadov
+                mode: 0644

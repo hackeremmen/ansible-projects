@@ -1,0 +1,20 @@
+---
+- name: Http and Telnet
+  hosts: 192.168.132.136
+
+  tasks:
+        - name: Install httpd
+          yum:
+                name: httpd
+                state: present
+
+        - name: Start httpd
+          service:
+                        name: httpd
+                        state: started
+
+        - name: Install telnet
+          yum:
+                name: telnet
+                state: present
+
